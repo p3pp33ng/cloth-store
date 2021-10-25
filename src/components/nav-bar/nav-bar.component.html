@@ -1,0 +1,28 @@
+<div class="nav-bar">
+    <ul class="nav-bar-list">
+        <li class="nav-bar-items">
+            <img (click)="toHome()" class="nav-bar-item" [src]="logoUrl" />
+        </li>
+        <li class="nav-bar-items">
+            <a class="nav-bar-item" (click)="toHome()">Home</a>
+        </li>
+        <li class="nav-bar-items">
+            <a class="nav-bar-item" (click)="toWomen()">Women</a>
+        </li>
+        <li class="nav-bar-items">
+            <a class="nav-bar-item" (click)="toMen()">Men</a>
+        </li>
+        <li class="nav-bar-items">
+            <div *ngIf="isLoggedIn; then showUserName; else showLogInOption"></div>
+            <ng-template #showUserName>
+                <a class="nav-bar-item" (click)="toUserAccount()">{{userName}}</a>
+            </ng-template>
+            <ng-template #showLogInOption>
+                <a class="nav-bar-item" (click)="toLogin()">Log in</a>
+            </ng-template>
+        </li>
+        <!-- <li class="nav-bar-items">
+            <button (click)="TestClick()"><span style="color: darkgreen;">TEST</span></button>
+        </li> -->
+    </ul>
+</div>

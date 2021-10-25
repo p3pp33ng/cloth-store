@@ -1,0 +1,9 @@
+<div id="clothes-displays">
+    <div *ngFor="let product of products">
+        <h3 class="cloth-display-title">{{product.title}}</h3>
+        <img class="cloth-display-image" src="{{product.imagePath}}" title="{{product.title}}">
+        <p class="cloth-display-description">{{product.description}}</p>
+        <p class="cloth-display-price">{{product.price}} SEK</p>
+        <button class="buy-button" (click)="buyProduct()">Buy</button>
+    </div>
+</div>

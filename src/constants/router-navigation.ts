@@ -1,0 +1,19 @@
+export const navigationConstant = {
+    "goBack":"../",
+    "welcomePath":"welcome",
+    "welcomeRedirect":"/welcome",
+    "productListPath":"product-list",
+    "procuctListRedirect":"/product-list",
+    "productDetailPath":"product-detail",
+    "productDetailRedirect":"/product-detail",
+    "productDetailPathWithId":"product-detail/:id",
+    "userAccountPath":"user-account",
+    "userAccountRedirect":"/user-account",
+    "userLoginPath":"login",
+    "userLoginRedirect":"/login",
+    "userRegistrationPath":"register",
+    "userRegistrationRedirect":"/register",
+    "defaultPath":"",
+    "defaultRedirect":"/",
+    "notFoundPath":"**"
+}

@@ -1,0 +1,9 @@
+.welcome-text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.welcome-text-container {
+    padding: 6vmin;
+}

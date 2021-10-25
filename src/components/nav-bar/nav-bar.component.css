@@ -1,0 +1,56 @@
+/* Style for nav bar items */
+
+.nav-bar-list {
+    background-color: darkcyan;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-bar-items {
+    float: left;
+}
+
+.nav-bar-item {
+    display: block;
+    color: lightcoral;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-bar-items img {
+    width: 3vmin;
+    height: 3vmin;
+}
+
+.nav-bar-item:hover {
+    background-color: cyan;
+}
+
+
+/* Style for nav bar items */
+
+
+/*Style for User item */
+
+.nav-bar-items:last-child {
+    float: right;
+}
+
+
+/*Style for User item */
+
+
+/* Style for fixed top navigation bar */
+
+.nav-bar-list {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: +1;
+}
+
+
+/* Style for fixed top navigation bar */

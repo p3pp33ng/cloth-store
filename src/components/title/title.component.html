@@ -1,0 +1,11 @@
+<div *ngIf='isLoggedIn; then thenBlock; else elseBlock'></div>
+
+<div class="welcome-text-container">
+    <ng-template #thenBlock>
+        <h3 class="welcome-text">Welcome {{userName}}</h3>
+    </ng-template>
+
+    <ng-template #elseBlock>
+        <h3 class="welcome-text">Welcome!</h3>
+    </ng-template>
+</div>
