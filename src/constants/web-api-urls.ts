@@ -10,9 +10,9 @@ export const productUrls = {
 
 export const userUrls = {
     "get-user": baseUrl + "user",
-    "post-register-user": baseUrl + "user",
+    "post-register-user": baseUrl + "user/register",
     "post-login-user": baseUrl + "user/login",
     "put-update-user": baseUrl + "user",
     "delete-user": baseUrl + "user",
-    "checked-if-logged-in":baseUrl + "checkIfLoggedIn"
+    "checked-if-logged-in": baseUrl + "checkIfLoggedIn"
 }

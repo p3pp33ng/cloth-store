@@ -1,0 +1,11 @@
+app-nav-bar {
+    padding: 2vmin;
+}
+
+#register-link {
+    color: cornflowerblue;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}

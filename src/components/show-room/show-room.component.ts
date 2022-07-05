@@ -13,7 +13,8 @@ export class ShowRoomComponent implements OnInit {
   constructor(private productService : ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => this.products = data);
+    this.productService.getProducts().subscribe(data => {console.log(data.values); this.products = data;});
+    console.log(this.products);
   }
 
 buyProduct(){

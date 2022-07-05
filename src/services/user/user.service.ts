@@ -4,6 +4,7 @@ import { userUrls } from 'src/constants/web-api-urls';
 import { DeleteUser, GetUser, IUser, LoginUser, RegisterUser, UpdateUser, User } from 'src/interfaces/users';
 import { Observable, throwError } from 'rxjs';
 import { Token } from 'src/interfaces/token';
+import { AuthService } from '../auth/authService';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,18 @@ export class UserService {
 
   private urls = userUrls;
   public loggedInUser: User | null = null;
-  public IsUserLoggedIn : boolean = this.loggedInUser !== null;
+  public IsUserLoggedIn: boolean = this.loggedInUser !== null;
+  public token: Token;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
 
-  getUser(): Observable<IUser> {
-    var result = new Observable<IUser>();
+  }
+
+  //TODO Look so Http Interceptor paste in token. 
+  getUser(userName: string): Observable<User> {
+    var result = new Observable<User>();
     try {
-      result = this.httpClient.get<IUser>(this.urls["get-user"]);
+      result = this.httpClient.get<User>(this.urls["get-user"]);
     } catch (error: any) {
       this.errorHandler(error);
     }
@@ -36,34 +41,31 @@ export class UserService {
     return result;
   }
 
-  loginUser(user: LoginUser) {
+  async loginUser(user: LoginUser) {
     try {
-      this.httpClient.post<Token>(this.urls["post-login-user"], user)
-      .subscribe(data => {
-        if (this.loggedInUser === null) {
-          this.getUser().subscribe(response => {
-            this.loggedInUser = new User(user.userName, 
-              response.firstName,
-              response.lastName,
-              response.email,
-              data);
-          });
-        }
-        else{
-          this.loggedInUser.token = data;
-        }
+      this.getAuthToken(user).subscribe(tokenData => {
+        console.log('Fetched token: ', tokenData);
+
+        this.authService.storeToken(tokenData);
+
+        this.getUser(user.userName).subscribe(userData => {
+          console.log('Fetched user', userData);
+
+          this.loggedInUser = userData;
+        });
       });
 
     } catch (error: any) {
+      console.log('Failed log in user');
+      console.log(error);
       this.errorHandler(error);
     }
   }
 
-
-  updateUser(user: UpdateUser): Observable<IUser> {
-    var result = new Observable<IUser>();
+  updateUser(user: UpdateUser): Observable<UpdateUser> {
+    var result = new Observable<UpdateUser>();
     try {
-      result = this.httpClient.put<IUser>(this.urls["put-update-user"], user);
+      result = this.httpClient.put<UpdateUser>(this.urls["put-update-user"], user);
     } catch (error: any) {
       this.errorHandler(error);
     }
@@ -82,21 +84,23 @@ export class UserService {
   }
 
   //This method is only called when the user has logged in previously and we have username
-  checkedIfLoggedIn(){
-//     if (this.loggedInUser?.token !== null) {
-//       this.httpClient.get<Token>(this.urls["checked-if-logged-in"])
-//       .subscribe(data => {
-        
-// this.loggedInUser?.token = data; 
-//       });
-//     }
-//     else{
-// //Show login page
-//     }
+  checkedIfLoggedIn() {
+    //     if (this.loggedInUser?.token !== null) {
+    //       this.httpClient.get<Token>(this.urls["checked-if-logged-in"])
+    //       .subscribe(data => {
+
+    // this.loggedInUser?.token = data; 
+    //       });
+    //     }
+    //     else{
+    // //Show login page
+    //     }
   }
 
-  getAuthToken(){
-    
+  getAuthToken(user: LoginUser): Observable<Token> {
+    var result = new Observable<Token>();
+    result = this.httpClient.post<Token>(this.urls["post-login-user"], user);
+    return result;
   }
 
   private errorHandler(error: HttpErrorResponse) {

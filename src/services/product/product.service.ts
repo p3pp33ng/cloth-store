@@ -10,14 +10,14 @@ import { Product } from 'src/interfaces/product';
 export class ProductService {
 
   private urls = productUrls;
-  
+
   constructor(private httpClient: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.urls['get-products']);
   }
 
-//   TestClick(){
-// return this.httpClient.get("https://assignment-portal-be9561.azurewebsites.net/posts");
-//   }
+  //   TestClick(){
+  // return this.httpClient.get("https://assignment-portal-be9561.azurewebsites.net/posts");
+  //   }
 }

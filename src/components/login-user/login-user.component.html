@@ -1,1 +1,17 @@
-<p>login-user works!</p>
+<app-nav-bar></app-nav-bar>
+<h1>Login here</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <label for="user-name">Username: </label>
+    <input id="user-name" type="text" formControlName="userName">
+
+    <label for="password">Password: </label>
+    <input id="password" type="password" formControlName="password">
+
+    <p>Log in</p>
+    <button id="submit-button" class="pointer-cursor" type="submit" [disabled]="!loginForm.valid">Login</button>
+</form>
+
+<p>Not a member? Register
+    <a id="register-link" class="pointer-cursor" (click)="registerUserRedirect()">here</a>
+</p>

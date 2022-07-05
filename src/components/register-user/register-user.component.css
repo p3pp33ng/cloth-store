@@ -1,0 +1,23 @@
+app-nav-bar {
+    padding: 2vmin;
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around;
+}
+
+#register-items {
+    margin-left: 6vmin;
+}
+
+#register-form input {
+    width: 35vmin;
+}
+
+#submit-button {
+    width: 36vmin;
+    margin-top: 3vmin;
+}

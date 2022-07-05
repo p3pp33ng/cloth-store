@@ -21,7 +21,6 @@ export interface LoginUser {
 export interface DeleteUser {
     userName: string;
     email: string;
-    password: string;
 }
 
 export interface UpdateUser {

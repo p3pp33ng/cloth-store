@@ -40,7 +40,8 @@ export class NavBarComponent implements OnInit {
 
   toLogin() {
     //Navigate to User-Login
-    alert("User is not loggedin and will be promt to register or login.");
+    // alert("User is not loggedin and will be promt to register or login.");
+    this.router.navigate([navigationConstant.goBack, navigationConstant.userLoginPath]);
   }
 
   // TestClick() {
